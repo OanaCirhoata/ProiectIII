@@ -16,6 +16,15 @@ class ProductsController extends CI_Controller {
 
 	public function get_products()
 	{
+		$data = array(
+			'produse' => $this->product_model->get_products(),
+			'categorie_produs' => $this->product_model->get_categorie_produs()
+			);
+
+		$this->load->view('template/sidebar');
+		$this->load->view('template/header');
+		$this->load->view('produse', $data);
+		$this->load->view('template/footer');
 		
 	}
 
@@ -67,7 +76,19 @@ class ProductsController extends CI_Controller {
 
     public function delete_product() {
           
-        
+        $id_produs = $this->uri->segment(3);
+        $imagini_produs = $this->product_model->get_images_for_product($id_produs);
+
+
+        foreach ($imagini_produs as $imagine) {
+            $path = './uploads/product_images/'.$imagine->nume;
+            unlink($path);
+            $this->product_model->delete_image($imagine->id_imagine);
+
+        }
+       
+        $this->product_model->delete_product($id_produs);
+        redirect('produse');
     }
 
 

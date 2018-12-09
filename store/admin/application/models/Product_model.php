@@ -5,6 +5,11 @@ class Product_model extends CI_Model {
 
 	function get_products()
 	{
+		$this->db->select('*');
+		$this->db->from('produse');
+		$query = $this->db->get();
+
+		return $query->result();
 	}
 
 	function add_products($postData, $imagine){
@@ -28,11 +33,14 @@ class Product_model extends CI_Model {
 
 
     function delete_product($id_produs){
+		$this->db->where('id_produs', $id_produs);
+        $this->db->delete('produse');
        
     }
 
     function delete_image(){
-        
+        $this->db->where('id_imagine', $id_imagine);
+        $this->db->delete('imagini_produse');
     }
 
     function get_info_product($id_produs) {
