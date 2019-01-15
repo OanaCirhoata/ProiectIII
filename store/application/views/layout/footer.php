@@ -116,5 +116,69 @@
 	<!-- Main -->
 	<script src="<?php echo base_url('assets/js/main.js') ?>"></script>
 
+
+
+	<script type="text/javascript">
+
+function ajax_fetch_products(id_category=null,min_price=null,max_price=null,size=null){
+	if(id_category===null){
+		console.log('NULL cat id');
+	} else{
+		console.log('Cat id: '+id_category);
+	}
+	$.ajax({
+                   	type:"ajax",
+                    url: "<?php echo base_url(); ?>productscontroller/ajax_load_products_for_category",
+                    method:"POST",
+                    dataType: "json",
+                    data:{
+                      id_category:id_category,
+                      pret_minim:min_price,
+                      pret_maxim:max_price,
+                      id_marime:size
+                    },
+                    success:function(response)
+                    {
+                        $('#products_container').html(response);
+                    },
+                    error: function() 
+                    {
+                        alert("Error!");
+                    }
+                });
+}
+
+
+		let id_category = null;
+		let min_price = null;
+		let max_price = null;
+		let size=null;
+
+	$(document).ready(function(){
+		
+		$('.product_category').on('click', function(){
+			id_category = $(this).attr('id');
+			ajax_fetch_products(id_category,min_price,max_price,size);
+		});	
+		$('#min_price').on('change', function(){
+			min_price = $('#min_price').val();
+			ajax_fetch_products(id_category,min_price,max_price,size);
+		});	
+		$('#max_price').on('change', function(){
+			max_price = $('#max_price').val();
+			ajax_fetch_products(id_category,min_price,max_price,size);
+		});	
+		$('.size').on('click', function(){
+			size = $(this).attr('id');
+			ajax_fetch_products(id_category,min_price,max_price,size);
+		});	
+
+		// ajax_fetch_products();
+	});
+
+
+
+</script>	
+
 	</body>
 </html>
