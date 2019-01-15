@@ -105,38 +105,7 @@ class ProductsController extends CI_Controller {
 
 	}
 
-     public function ajax_load_products_for_category(){
-
-    	$filtre['id_categorie'] = $this->input->post('id_category');
-    	$filtre['pret_minim'] = $this->input->post('pret_minim');
-    	$filtre['pret_maxim'] = $this->input->post('pret_maxim');
-    	$filtre['id_marime'] = $this->input->post('id_marime');
-
-    	$produse = $this->product_model->get_products_by_brand($filtre);
-
-
-    	$res = "";
-    	foreach($produse as $produs){
-							
-		$res.='<div class="col-md-4 text-center">
-								<div class="product-entry">
-									<div class="product-img" style="background-image: url('.base_url("uploads/product-images/").$produs->thumbnail.')">
-										<p class="tag"><span class="new">New</span></p>
-										<div class="cart">
-											<p><span><a href="'.base_url("#").'"><i class="icon-heart3"></i></a></span></p>
-										</div>
-									</div>
-									<div class="desc">
-										<h3><a href="'.base_url("produs/").$produs->id_produs.'">'.$produs->nume.'</a></h3>
-										<p class="price"><span>'.$produs->pret.' RON</span></p>
-									</div>
-								</div>
-							</div>';
-							
-		}
-
-		echo json_encode($res);
-    } public function ajax_load_products_for_category(){
+ public function ajax_load_products_for_category(){
 
     	$filtre['id_categorie'] = $this->input->post('id_category');
     	$filtre['pret_minim'] = $this->input->post('pret_minim');
