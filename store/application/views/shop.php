@@ -35,9 +35,9 @@
 										<p class="tag"><span class="new">New</span></p>
 										<div class="cart">
 											<p>
-												<!-- <span class="addtocart"><a href="#"><i class="icon-shopping-cart"></i></a></span> 
-												<span><a href="<?php echo base_url('productscontroller/product_detail').$produs->id_produs ?>"><i class="icon-eye"></i></a></span>  -->
-												<span><a href="#"><i class="icon-heart3"></i></a></span>
+												<span class="addtocart"><a href="<?php echo base_url('productscontroller/addToCart/').$produs->id_produs ?>"><i class="icon-shopping-cart"></i></a></span> 
+												<span><a href="<?php echo base_url('productscontroller/product_detail').$produs->id_produs ?>"><i class="icon-eye"></i></a></span>  
+												<span><a href="<?php echo base_url("index/addToWishlist/".$produs->id_produs) ?>"><i class="icon-heart3"></i></a></span>
 												
 											</p>
 										</div>

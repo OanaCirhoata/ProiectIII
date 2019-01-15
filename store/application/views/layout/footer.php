@@ -180,5 +180,40 @@ function ajax_fetch_products(id_category=null,min_price=null,max_price=null,size
 
 </script>	
 
+
+
+<script type="text/javascript">
+	function ajax_addtocart(){
+			let id_produs = $('#id_produs').val();
+			let marime = $('#marime').val();
+			let cantitate = $('#quantity').val();
+
+			// console.log(id_produs);
+			// console.log(marime);
+			// console.log(cantitate);
+
+
+			$.ajax({
+				type:"ajax",
+                    url: "<?php echo base_url(); ?>productscontroller/addToCart",
+                    method:"POST",
+                    dataType: "json",
+                    data:{
+                      id_produs:id_produs,
+                      marime:marime,
+                      cantitate:cantitate
+                    },
+                    success:function(response)
+                    {
+                     	window.location.reload();
+                    },
+                    error: function() 
+                    {
+                        window.location.reload();
+                    }
+			});
+	}
+</script>
+
 	</body>
 </html>
